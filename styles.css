@@ -32,7 +32,7 @@ body{font-family:'Lato',sans-serif;color:var(--navy);text-align:center;line-heig
    ===================================================== */
 #welcome-screen{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#dbe9f6;transition:opacity .6s}
 /* el póster de bienvenida (1080x1920) ocupa una columna vertical centrada */
-#welcome-screen::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:min(100vw,56.25vh);transform:translateX(-50%);background:url('fondo-bienvenida.jpg') center/cover no-repeat;pointer-events:none;z-index:0;box-shadow:0 0 40px rgba(16,38,141,.2)}
+#welcome-screen::before{content:"";position:absolute;top:0;bottom:0;left:50%;width:min(100vw,56.25vh);transform:translateX(-50%);background:url('fondo-bienvenida.jpg?v=2') center/cover no-repeat;pointer-events:none;z-index:0;box-shadow:0 0 40px rgba(16,38,141,.2)}
 .welcome-content{position:relative;z-index:3;width:100%;display:flex;flex-direction:column;align-items:center;gap:14px;padding:20px}
 .neon{font-family:'Slight','Great Vibes',cursive;font-weight:400;font-size:clamp(3.8rem,19vw,5.8rem);line-height:1.1;color:var(--navy);text-shadow:0 2px 12px rgba(255,255,255,.95)}
 .welcome-sub{font-family:'Lato',sans-serif;letter-spacing:.35em;padding-left:.35em;color:var(--navy);text-transform:uppercase;font-size:.85rem;font-weight:700;text-shadow:0 0 8px rgba(255,255,255,.95)}
@@ -248,8 +248,8 @@ img.ico-gif:not([src]){display:none}
 @keyframes noteFloat{0%,100%{opacity:1;transform:translateY(0)}50%{opacity:.45;transform:translateY(-3px)}}
 @media (prefers-reduced-motion:reduce){.rsvp-card .note{animation:none}}
 .closing{padding:20px 0 calc(var(--col)*.62);display:flex;flex-direction:column;gap:14px}   /* deja lugar para las flores de abajo */
-/* el texto va en dos líneas (hay un <br> en el HTML) y se corre un poco a la izquierda: así no toca la mariposa */
-.closing p:not(.script){font-weight:500;font-size:1.4rem;line-height:1.5;color:var(--navy);max-width:78%;margin:0 auto;padding-right:4%}
+/* dos líneas fijas (hay un <br> en el HTML), sin cortarse en tres, y un poco a la izquierda para no tocar la mariposa */
+.closing p:not(.script){font-weight:500;font-size:clamp(1.05rem,5.2vw,1.4rem);line-height:1.5;color:var(--navy);white-space:nowrap;margin:0 auto;position:relative;left:-3%}
 .closing .script.big{font-size:3.2rem;color:var(--navy)}
 
 /* =====================================================
