@@ -1,4 +1,4 @@
-/* VERSION IARA 1.1 — modelo Valentina, azul #10268d, marco celeste (fondo-arriba / fondo-tile / fondo-abajo) */
+/* VERSION IARA 1.3 — azul #10268d, marco celeste con brillos y mariposas (marco-arriba / marco-medio / marco-abajo) */
 @font-face{font-family:'Slight';src:url('Slight.woff2') format('woff2'),url('Slight.otf') format('opentype'),url('Slight.ttf') format('truetype');font-display:swap}
 
 /* =====================================================
@@ -9,17 +9,18 @@
   --base:#ffffff;
   --col:min(100vw,480px);          /* ancho real de la columna */
   --sec-y:26px;                    /* espacio vertical de cada sección */
-  --lado:calc(var(--col)*.1);      /* aire a los costados: el contenido queda dentro del marco celeste */
+  --lado:calc(var(--col)*.12);     /* aire a los costados: el contenido queda dentro del marco celeste */
   --titulo:'Pinyon Script',cursive;
   --serif:'Cormorant Garamond',serif;
 
-  /* FONDO DE LA INVITACIÓN: 3 piezas del mismo ancho (927px) */
-  --img-arriba:url('fondo-arriba.jpg?v=2');   /* 927 x 1470  -> alto = 1.586 x ancho */
-  --img-tile:url('fondo-tile.jpg?v=2');       /* 927 x 164   -> alto = 0.177 x ancho (se repite) */
-  --img-abajo:url('fondo-abajo.jpg?v=2');     /* 927 x 942   -> alto = 1.016 x ancho */
-  --h-arriba:calc(var(--col)*1.586);
-  --h-tile:calc(var(--col)*.177);
-  --h-abajo:calc(var(--col)*1.016);
+  /* FONDO DE LA INVITACIÓN: 3 piezas del mismo ancho (927px), cortadas de un solo marco
+     (el script.js ajusta estas tres alturas para que el medio encaje justo, sin cortes) */
+  --img-arriba:url('marco-arriba.jpg?v=1');   /* 927 x 1405  -> alto = 1.5156 x ancho */
+  --img-tile:url('marco-medio.jpg?v=1');       /* 927 x 740   -> alto = 0.7983 x ancho (se repite; es espejo, empalma sin costura) */
+  --img-abajo:url('marco-abajo.jpg?v=1');     /* 927 x 1171  -> alto = 1.2632 x ancho */
+  --h-arriba:calc(var(--col)*1.5156);
+  --h-tile:calc(var(--col)*.7983);
+  --h-abajo:calc(var(--col)*1.2632);
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Lato',sans-serif;color:var(--navy);text-align:center;line-height:1.6;background:linear-gradient(#e4f2fc,#cfe6f7) fixed}
@@ -100,9 +101,7 @@ body{font-family:'Lato',sans-serif;color:var(--navy);text-align:center;line-heig
   background:var(--base) var(--img-tile) 0 var(--h-arriba)/100% var(--h-tile) repeat-y}   /* la franja del medio arranca justo donde termina la de arriba */
 .page::before,.page::after{content:"";position:absolute;left:0;right:0;z-index:-1;pointer-events:none}
 .page::before{top:0;height:var(--h-arriba);background:var(--img-arriba) top center/100% 100% no-repeat}
-.page::after{bottom:0;height:var(--h-abajo);background:var(--img-abajo) bottom center/100% 100% no-repeat;
-  -webkit-mask-image:linear-gradient(to top,#000 0,#000 88%,transparent 100%);
-          mask-image:linear-gradient(to top,#000 0,#000 88%,transparent 100%)}   /* se funde con la franja del medio */
+.page::after{bottom:0;height:var(--h-abajo);background:var(--img-abajo) bottom center/100% 100% no-repeat}   /* empalma exacto con el medio: no hace falta difuminar */
 .cover,.story-section,.date-section,.center-section,.place-section,.duo,.rsvp,.closing{background:none}
 
 /* separación entre secciones (sin imagen, solo aire) */
@@ -145,7 +144,7 @@ body{font-family:'Lato',sans-serif;color:var(--navy);text-align:center;line-heig
 /* =====================================================
    5. PORTADA
    ===================================================== */
-.cover{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:calc(var(--col)*.3) 0 6px}   /* baja lo justo para no pisar las flores de arriba */
+.cover{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:calc(var(--col)*.42) 0 6px}   /* baja lo justo para no pisar la flor de arriba */
 .cover-name{width:100%;display:flex;justify-content:center;margin:6px 0 12px}
 .cover-name img{width:min(100%,380px);height:auto;display:block}
 .player{width:100%;max-width:280px;margin:10px 0 18px}
@@ -248,8 +247,8 @@ img.ico-gif:not([src]){display:none}
 @keyframes noteFloat{0%,100%{opacity:1;transform:translateY(0)}50%{opacity:.45;transform:translateY(-3px)}}
 @media (prefers-reduced-motion:reduce){.rsvp-card .note{animation:none}}
 .closing{padding:20px 0 calc(var(--col)*.62);display:flex;flex-direction:column;gap:14px}   /* deja lugar para las flores de abajo */
-/* dos líneas fijas (hay un <br> en el HTML), sin cortarse en tres, y un poco a la izquierda para no tocar la mariposa */
-.closing p:not(.script){font-weight:500;font-size:clamp(1.05rem,5.2vw,1.4rem);line-height:1.5;color:var(--navy);white-space:nowrap;margin:0 auto;position:relative;left:-3%}
+/* dos líneas fijas (hay un <br> en el HTML), sin cortarse en tres */
+.closing p:not(.script){font-weight:500;font-size:clamp(1.05rem,5.2vw,1.4rem);line-height:1.5;color:var(--navy);white-space:nowrap;margin:0 auto}
 .closing .script.big{font-size:3.2rem;color:var(--navy)}
 
 /* =====================================================
