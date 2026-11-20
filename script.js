@@ -81,6 +81,7 @@ $('open-btn').addEventListener('click', function () {
       screen.classList.add('hidden');
       $('main-content').classList.remove('hidden');
       fitStory();
+      fitFrame();
       window.scrollTo(0, 0);
     }, 600);
   }, 2900);                                         // tiempo que dura la animación del sobre
@@ -236,6 +237,30 @@ function fitStory() {
 document.querySelectorAll('.story-photos img').forEach(i => i.addEventListener('load', fitStory));
 window.addEventListener('resize', fitStory);
 if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitStory);
+
+/* ===== Marco de fondo: el medio se repite un número EXACTO de veces =====
+   El marco está en 3 piezas (arriba, medio que se repite, abajo). Según el largo de la invitación,
+   el medio no siempre entra justo: acá se calcula cuántas veces entra y se ajusta su alto (muy poco)
+   para que el empalme con la pieza de abajo quede perfecto, sin cortes. */
+function fitFrame() {
+  const pg = document.querySelector('.page');
+  if (!pg || !pg.offsetHeight) return;               // todavía oculto
+  const w = pg.offsetWidth;
+  const hA = w * 1.5156, hB = w * 1.2632, tl = w * 0.7983;   // alto de cada pieza (según su proporción)
+  const mid = pg.offsetHeight - hA - hB;
+  pg.style.setProperty('--h-arriba', hA + 'px');
+  pg.style.setProperty('--h-abajo', hB + 'px');
+  if (mid < tl / 2) return;                          // invitación muy corta: no hace falta medio
+  const n = Math.max(1, Math.round(mid / tl));
+  pg.style.setProperty('--h-tile', (mid / n) + 'px');
+}
+(function () {
+  const pg = document.querySelector('.page');
+  if ('ResizeObserver' in window && pg) new ResizeObserver(fitFrame).observe(pg);
+  window.addEventListener('resize', fitFrame);
+  window.addEventListener('load', fitFrame);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fitFrame);
+})();
 
 /* ===== Al volver de Google Maps u otra app, la música sigue sola ===== */
 function resumeMusic() {
