@@ -14,9 +14,9 @@
   --serif:'Cormorant Garamond',serif;
 
   /* FONDO DE LA INVITACIÓN: 3 piezas del mismo ancho (927px) */
-  --img-arriba:url('fondo-arriba.jpg');   /* 927 x 1470  -> alto = 1.586 x ancho */
-  --img-tile:url('fondo-tile.jpg');       /* 927 x 164   -> alto = 0.177 x ancho (se repite) */
-  --img-abajo:url('fondo-abajo.jpg');     /* 927 x 942   -> alto = 1.016 x ancho */
+  --img-arriba:url('fondo-arriba.jpg?v=2');   /* 927 x 1470  -> alto = 1.586 x ancho */
+  --img-tile:url('fondo-tile.jpg?v=2');       /* 927 x 164   -> alto = 0.177 x ancho (se repite) */
+  --img-abajo:url('fondo-abajo.jpg?v=2');     /* 927 x 942   -> alto = 1.016 x ancho */
   --h-arriba:calc(var(--col)*1.586);
   --h-tile:calc(var(--col)*.177);
   --h-abajo:calc(var(--col)*1.016);
