@@ -161,7 +161,7 @@ body{font-family:'Lato',sans-serif;color:var(--navy);text-align:center;line-heig
 .mis15{margin:8px 0 24px;display:flex;justify-content:center}
 .mis15 img{width:100%;max-width:400px;height:auto;display:block;margin:0 auto}
 .cover-name img,.mis15 img{mix-blend-mode:multiply}
-
+.tiara{width:min(66%,290px);aspect-ratio:3/2;object-fit:cover;object-position:50% 35%;display:block;margin:0 auto -6px;mix-blend-mode:multiply}
 /* =====================================================
    6. TEXTO DE LA HISTORIA + FOTOS (el tamaño de letra lo calcula fitStory())
    ===================================================== */
