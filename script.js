@@ -2,7 +2,7 @@
 const CONFIG = {
   fecha: "December 19, 2026 22:00:00",        // sábado 19 de diciembre, 22:00
   youtubeId: "BDwEyfgClF4",                   // código del video de YouTube de la canción. Vacío = no aparece el reproductor
-  inicio: 0,                                  // segundo desde el que suena la canción (15 = salta los primeros 15 segundos)
+  inicio: 5,                                  // segundo desde el que suena la canción (15 = salta los primeros 15 segundos)
   whatsapp: "5493815476047",                  // 54 + 9 + número
   mapsUrl: "https://www.google.com/maps/search/?api=1&query=Barrio+Julio+Abraham+Alderetes+Tucum%C3%A1n",   // PENDIENTE: reemplazar por el link exacto de Google Maps. Vacío = no aparece el botón
   alias: "",                                  // PENDIENTE: alias de Iara. Vacío = no aparece la sección de regalos
